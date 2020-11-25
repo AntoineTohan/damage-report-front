@@ -60,7 +60,7 @@ export default class UploadImage extends React.PureComponent<IProps, IState> {
     if (this.state.files.length > 0) {
       this.props.onClickAnalyze();
       axios
-        .post("http://localhost:5000/upload-image")
+        .post("http://localhost:5000/upload-image",this.state.files)
         .then((response) => {
           console.log(response);
         })
