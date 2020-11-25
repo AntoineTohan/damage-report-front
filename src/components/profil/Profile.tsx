@@ -74,7 +74,7 @@ export default function Profile() {
             <tbody>
               <tr>
                 <th scope="row">Immatriculation :</th>
-                <td>VR-205-R</td>
+                <td>VR-205-ZR</td>
               </tr>
               <tr>
                 <th scope="row">Marque :</th>
