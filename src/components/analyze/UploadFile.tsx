@@ -59,14 +59,25 @@ export default class UploadImage extends React.PureComponent<IProps, IState> {
   handleClickAnalyze() {
     if (this.state.files.length > 0) {
       this.props.onClickAnalyze();
-      axios
-        .post("http://localhost:5000/upload-image",this.state.files)
-        .then((response) => {
-          console.log(response);
-        })
-        .catch((error) => {
-          console.log(error);
-        });
+      const imagefile = document.querySelector(
+        "#inputGroupFile01"
+      ) as HTMLInputElement;
+      if (!!imagefile && imagefile.files) {
+        const formData = new FormData();
+        formData.append("data", imagefile.files[0]);
+        axios
+          .post("http://localhost:5000/upload-image", formData, {
+            headers: {
+              "Content-Type": "multipart/form-data",
+            },
+          })
+          .then((response) => {
+            console.log(response);
+          })
+          .catch((error) => {
+            console.log(error);
+          });
+      }
     } else {
       Swal.fire({
         title: "Choisissez le(s) photo(s) du véhicule pour l'analyse.",
