@@ -3,6 +3,7 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faCamera, faTimes } from "@fortawesome/free-solid-svg-icons";
 import { v4 as uuid_v4 } from "uuid";
 import Swal from "sweetalert2";
+import axios from "axios";
 import "./UploadFile.css";
 
 interface FileCustom {
@@ -58,9 +59,14 @@ export default class UploadImage extends React.PureComponent<IProps, IState> {
   handleClickAnalyze() {
     if (this.state.files.length > 0) {
       this.props.onClickAnalyze();
-      fetch("http://localhost:5000/upload-image").then((response) =>
-        console.log(response.json())
-      );
+      axios
+        .post("http://localhost:5000/upload-image")
+        .then((response) => {
+          console.log(response);
+        })
+        .catch((error) => {
+          console.log(error);
+        });
     } else {
       Swal.fire({
         title: "Choisissez le(s) photo(s) du véhicule pour l'analyse.",
@@ -109,12 +115,7 @@ export default class UploadImage extends React.PureComponent<IProps, IState> {
                 className="close-hover"
                 onClick={() => this.handleClickRemoveImage(file.id)}
               />
-              <img
-                src={file.url}
-                height="114"
-                alt=""
-                className="ml-2 mr-2"
-              />
+              <img src={file.url} height="114" alt="" className="ml-2 mr-2" />
             </div>
           ))}
 
