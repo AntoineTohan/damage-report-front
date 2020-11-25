@@ -12,6 +12,7 @@ interface IPropsNavbar {
   view: string;
 }
 export default class Navbar extends React.PureComponent<IPropsNavbar, {}> {
+  // eslint-disable-next-line @typescript-eslint/no-useless-constructor
   constructor(props: IPropsNavbar) {
     super(props);
   }
