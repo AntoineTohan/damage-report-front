@@ -38,8 +38,8 @@ export default class Home extends React.PureComponent {
               <h2 className="display-5">Particulier</h2>
               <p className="lead">
                 Damage Report propose une solution pour aider les particuliers à
-                chiffre les dommages d'un véhicule et conseillé des garage qui
-                propose des prestations de réparation adaptées.
+                chiffrer les dommages d'un véhicule et conseiller des garages qui
+                proposent des prestations de réparation adaptée.
               </p>
             </div>
             <img src={imageParticulier} alt="" />
@@ -50,8 +50,8 @@ export default class Home extends React.PureComponent {
               <p className="lead ">
                 Damage Report propose une solution pour aider les entreprises à
                 suivre l'état de leur véhicule à chaque sortie. Avec un scan en
-                6 photos du véhicule vous-pourrez comparer l'état du véhicule
-                avec un état précedent.
+                6 photos du véhicule vous pourrez comparer l'état du véhicule
+                avec un état précédent.
               </p>
             </div>
             <img src={imageEntreprise} alt="" height="339" className="mb-2" />
