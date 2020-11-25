@@ -1,0 +1,18 @@
+.custom-imput::-webkit-input-placeholder {
+    color: red;
+    text-align: center;
+}
+.custom-imput:-moz-placeholder {
+    /* Firefox 18- */
+    color: red;
+    text-align: center;
+}
+.custom-imput::-moz-placeholder {
+    /* Firefox 19+ */
+    color: red;
+    text-align: center;
+}
+.custom-imput:-ms-input-placeholder {
+    color: red;
+    text-align: center;
+}

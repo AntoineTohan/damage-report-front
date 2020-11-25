@@ -1,0 +1,11 @@
+.App {
+  text-align: center;
+}
+
+.navbar-logo {
+  width: 50px;
+}
+
+.bg-custom {
+  background-color: #242a2e !important;
+}
