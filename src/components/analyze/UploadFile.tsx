@@ -87,7 +87,8 @@ export default class UploadImage extends React.PureComponent<IProps, IState> {
               },
             })
             .then((response) => {
-              if (response.status !== 201) {
+              console.log(response);
+              if (response.status !== 200) {
                 Swal.fire({
                   title:
                     "Les fichiers ne sont pas valables veuillez réessayer.",
