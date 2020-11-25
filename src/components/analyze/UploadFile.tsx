@@ -1,7 +1,7 @@
 import React from "react";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faCamera, faTimes } from "@fortawesome/free-solid-svg-icons";
-import { uuid } from 'uuidv4';
+import { v4 as uuid_v4 } from "uuid";
 import Swal from "sweetalert2";
 import "./UploadFile.css";
 
@@ -46,7 +46,7 @@ export default class UploadImage extends React.PureComponent<IProps, IState> {
         type: f.type,
         webkitRelativePath: f.webkitRelativePath,
         url: URL.createObjectURL(f),
-        id: uuid(),
+        id: uuid_v4(),
       };
     });
     const filesState = this.state.files.concat(fileWithURL);
@@ -58,6 +58,9 @@ export default class UploadImage extends React.PureComponent<IProps, IState> {
   handleClickAnalyze() {
     if (this.state.files.length > 0) {
       this.props.onClickAnalyze();
+      fetch("http://localhost:5000/upload-image").then((response) =>
+        console.log(response.json())
+      );
     } else {
       Swal.fire({
         title: "Choisissez le(s) photo(s) du véhicule pour l'analyse.",
@@ -91,6 +94,7 @@ export default class UploadImage extends React.PureComponent<IProps, IState> {
               className="custom-file-input"
               id="inputGroupFile01"
               onChange={this.handleChange}
+              accept=".jpg,.jpeg,.png"
             />
             <label className="custom-file-label" htmlFor="inputGroupFile01">
               Choisissez le(s) photo(s) du véhicule
@@ -99,14 +103,13 @@ export default class UploadImage extends React.PureComponent<IProps, IState> {
         </div>
         {this.state.files.length > 0 &&
           this.state.files.map((file) => (
-            <div className="mt-2 mb-2">
+            <div key={file.name} className="mt-2 mb-2">
               <FontAwesomeIcon
                 icon={faTimes}
                 className="close-hover"
                 onClick={() => this.handleClickRemoveImage(file.id)}
               />
               <img
-                key={file.name}
                 src={file.url}
                 height="114"
                 alt=""
