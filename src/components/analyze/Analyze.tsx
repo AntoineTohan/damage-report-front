@@ -5,11 +5,14 @@ import {
   faCheckCircle,
   faCamera,
   faBalanceScale,
+  faImages,
 } from "@fortawesome/free-solid-svg-icons";
 import UploadImage from "./UploadFile";
+import "./Analyze.css";
 
 interface IState {
   analyze: boolean;
+  loading: boolean;
 }
 
 export default class Analyze extends React.PureComponent<{}, IState> {
@@ -17,13 +20,25 @@ export default class Analyze extends React.PureComponent<{}, IState> {
     super(props);
     this.state = {
       analyze: false,
+      loading: false,
     };
     this.handleClickAnalyze = this.handleClickAnalyze.bind(this);
+    this.startLoading = this.startLoading.bind(this);
+    this.endLoading = this.endLoading.bind(this);
   }
 
   handleClickAnalyze() {
     this.setState({ analyze: true });
   }
+
+  startLoading() {
+    this.setState({ loading: true });
+  }
+
+  endLoading() {
+    this.setState({ loading: false });
+  }
+
   render() {
     return (
       <div>
@@ -38,9 +53,24 @@ export default class Analyze extends React.PureComponent<{}, IState> {
         <UploadImage
           analyze={this.state.analyze}
           onClickAnalyze={this.handleClickAnalyze}
+          startLoading={this.startLoading}
+          endLoading={this.endLoading}
+          loading={this.state.loading}
         />
 
-        {this.state.analyze && (
+        {this.state.loading && (
+          <div className="container text-center mt-4">
+            <div className="loader"></div>
+            <br />
+            <br />
+            <br />
+            <br />
+            <br />
+            <br />
+          </div>
+        )}
+
+        {this.state.analyze && !this.state.loading && (
           <div>
             <h1 className="display-4">Synthèse de l'analyse :</h1>
             <div className="container">
@@ -143,6 +173,7 @@ export default class Analyze extends React.PureComponent<{}, IState> {
                       de manière légère.
                       <br />
                       <br />
+                      Estimation des coûts : <b>250 euros</b>
                     </p>
                     <p>
                       Nous vous conseillons de vous orienté vers un service tels
@@ -160,6 +191,12 @@ export default class Analyze extends React.PureComponent<{}, IState> {
                 </div>
               </div>
             </div>
+            <Link to="/home">
+              <span className="btn btn-success btn-lg ml-3 mt-3 mb-4">
+                <FontAwesomeIcon icon={faImages} className="mr-2 ml-2" />
+                Retour à l'accueil
+              </span>
+            </Link>
           </div>
         )}
         {!this.state.analyze && (

@@ -23,8 +23,21 @@ interface IState {
 
 interface IProps {
   analyze: boolean;
+  loading: boolean;
   onClickAnalyze(): void;
+  startLoading(): void;
+  endLoading(): void;
 }
+
+function delayJob(ms: number) {
+  console.log("DELAYYYY");
+  return new Promise(function (resolve, reject) {
+    setTimeout(function () {
+      resolve();
+    }, ms);
+  });
+}
+
 export default class UploadImage extends React.PureComponent<IProps, IState> {
   constructor(props: any) {
     super(props);
@@ -56,28 +69,41 @@ export default class UploadImage extends React.PureComponent<IProps, IState> {
     });
   }
 
-  handleClickAnalyze() {
+  async handleClickAnalyze() {
     if (this.state.files.length > 0) {
       this.props.onClickAnalyze();
-      const imagefile = document.querySelector(
-        "#inputGroupFile01"
-      ) as HTMLInputElement;
-      if (!!imagefile && imagefile.files) {
-        const formData = new FormData();
-        formData.append("data", imagefile.files[0]);
-        axios
-          .post("http://localhost:5000/upload-image", formData, {
-            headers: {
-              "Content-Type": "multipart/form-data",
-            },
-          })
-          .then((response) => {
-            console.log(response);
-          })
-          .catch((error) => {
-            console.log(error);
-          });
-      }
+      this.props.startLoading();
+      this.state.files.forEach((f, index) => {
+        const imagefile = document.querySelector(
+          "#inputGroupFile01"
+        ) as HTMLInputElement;
+        if (!!imagefile && imagefile.files) {
+          const formData = new FormData();
+          formData.append("data", imagefile.files[index]);
+          axios
+            .post("http://localhost:5000/upload-image", formData, {
+              headers: {
+                "Content-Type": "multipart/form-data",
+              },
+            })
+            .then((response) => {
+              if (response.status !== 201) {
+                Swal.fire({
+                  title:
+                    "Les fichiers ne sont pas valables veuillez réessayer.",
+                  icon: "warning",
+                  showCancelButton: false,
+                  confirmButtonColor: "#3085d6",
+                });
+              }
+            })
+            .catch((error) => {
+              console.log(error);
+            });
+        }
+      });
+      await delayJob(5000);
+      this.props.endLoading();
     } else {
       Swal.fire({
         title: "Choisissez le(s) photo(s) du véhicule pour l'analyse.",
@@ -130,13 +156,15 @@ export default class UploadImage extends React.PureComponent<IProps, IState> {
             </div>
           ))}
 
-        <button
-          className="btn btn-lg btn-primary btn-block mt-2"
-          type="submit"
-          onClick={() => this.handleClickAnalyze()}
-        >
-          Lancer l'analyse !
-        </button>
+        {!this.props.loading && !this.props.analyze && (
+          <button
+            className="btn btn-lg btn-primary btn-block mt-2"
+            type="submit"
+            onClick={async () => await this.handleClickAnalyze()}
+          >
+            Lancer l'analyse !
+          </button>
+        )}
       </div>
     );
   }
