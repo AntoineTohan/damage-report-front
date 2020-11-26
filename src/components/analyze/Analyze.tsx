@@ -120,7 +120,7 @@ export default class Analyze extends React.PureComponent<{}, IState> {
                       <p className="mt-4">
                         Nous n'avous détecter aucune voiture sur votre photo.{" "}
                         <br /> <br /> Si vous êtes sur qu'il y a le véhicule sur
-                        la photo veuillez repprendre un photo avec une meilleure
+                        la photo veuillez reprendre un photo avec une meilleure
                         exposition à environs 2-3m du véhicule sans utiliser de
                         zoom.
                       </p>
@@ -175,7 +175,7 @@ export default class Analyze extends React.PureComponent<{}, IState> {
                         <p>
                           Nous n'avous détecter aucun dommage sur votre
                           véhicule. <br /> <br /> Si vous êtes sur qu'il y a
-                          bien un dommage veuillez repprendre un photo avec une
+                          bien un dommage veuillez reprendre un photo avec une
                           meilleur exposition du dégat à environs 2-3m du
                           véhicule sans utiliser de zoom.
                         </p>
@@ -196,7 +196,7 @@ export default class Analyze extends React.PureComponent<{}, IState> {
                           // eslint-disable-next-line no-restricted-globals
                           onClick={() => location.reload()}
                         >
-                          Repprendre la photo
+                          Reprendre la photo
                           <FontAwesomeIcon
                             icon={faCamera}
                             className="mr-2 ml-2"
