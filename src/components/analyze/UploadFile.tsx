@@ -3,7 +3,7 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faCamera, faTimes } from "@fortawesome/free-solid-svg-icons";
 import { v4 as uuid_v4 } from "uuid";
 import Swal from "sweetalert2";
-import axios from "axios";
+import axios, { AxiosResponse } from "axios";
 import "./UploadFile.css";
 
 interface FileCustom {
@@ -27,6 +27,7 @@ interface IProps {
   onClickAnalyze(): void;
   startLoading(): void;
   endLoading(): void;
+  setResponse(response: AxiosResponse<any>): void;
 }
 
 function delayJob(ms: number) {
@@ -87,7 +88,6 @@ export default class UploadImage extends React.PureComponent<IProps, IState> {
               },
             })
             .then((response) => {
-              console.log(response);
               if (response.status !== 200) {
                 Swal.fire({
                   title:
@@ -96,6 +96,9 @@ export default class UploadImage extends React.PureComponent<IProps, IState> {
                   showCancelButton: false,
                   confirmButtonColor: "#3085d6",
                 });
+              } else {
+                console.log(response);
+                this.props.setResponse(response);
               }
             })
             .catch((error) => {
@@ -103,7 +106,7 @@ export default class UploadImage extends React.PureComponent<IProps, IState> {
             });
         }
       });
-      await delayJob(5000);
+      await delayJob(1000);
       this.props.endLoading();
     } else {
       Swal.fire({
@@ -133,7 +136,7 @@ export default class UploadImage extends React.PureComponent<IProps, IState> {
           </div>
           <div className="custom-file">
             <input
-              multiple={true}
+              multiple={false}
               type="file"
               className="custom-file-input"
               id="inputGroupFile01"
