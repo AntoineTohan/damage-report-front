@@ -12,6 +12,8 @@ import {
 import { AxiosResponse } from "axios";
 import UploadImage from "./UploadFile";
 import "./Analyze.css";
+import piece1 from '../../ressources/piece1.png'
+import piece2 from '../../ressources/piece2.png'
 
 interface IState {
   analyze: boolean;
@@ -53,10 +55,9 @@ export default class Analyze extends React.PureComponent<{}, IState> {
     return (
       <div>
         <div className="pricing-header px-3 py-3 pt-md-5 pb-md-4 mx-auto text-center">
-          <h1 className="display-4">Analyse de votre véhicule</h1>
+          <h1 className="display-4">Analyse d'un véhicule</h1>
           <p className="lead">
-            Prennez une ou plusieurs photo du possible dégat détecté sur votre
-            véhicule :
+            Prennez une ou plusieurs photo(s) du véhicule :
           </p>
         </div>
 
@@ -117,9 +118,9 @@ export default class Analyze extends React.PureComponent<{}, IState> {
                     )}
                     {this.state.response.data.car.class !== "car" && (
                       <p className="mt-4">
-                        Nous n'avous détecter de voiture sur votre photo. <br />{" "}
-                        <br /> Si vous êtes sur qu'il y a votre véhicule sur la
-                        photo veuillez repprendre un photo avec une meilleure
+                        Nous n'avous détecter aucune voiture sur votre photo.{" "}
+                        <br /> <br /> Si vous êtes sur qu'il y a le véhicule sur
+                        la photo veuillez repprendre un photo avec une meilleure
                         exposition à environs 2-3m du véhicule sans utiliser de
                         zoom.
                       </p>
@@ -167,7 +168,7 @@ export default class Analyze extends React.PureComponent<{}, IState> {
                       )}
                       {this.state.response.data.damage.class === "00-damage" ? (
                         <p>
-                          Nous avons bien détecté un ou des dommages sur votre
+                          Nous avons bien détecté un ou des dommages sur le
                           véhicule.{" "}
                         </p>
                       ) : (
@@ -219,8 +220,8 @@ export default class Analyze extends React.PureComponent<{}, IState> {
                         <li className="list-group-item">- Carroserie aile</li>
                       </ul>
                       <p>
-                        Les dommages sont détecté au niveau de(s) vitre(s) de
-                        votre véhicules.
+                        Les dommages sont détecté au niveau de(s) vitre(s) du
+                        véhicules.
                       </p>
                       <br />
                     </div>
@@ -236,15 +237,7 @@ export default class Analyze extends React.PureComponent<{}, IState> {
                     </div>
                     <div className="card-body">
                       <h1 className="card-title pricing-card-title">Faible</h1>
-                      <p>
-                        Les dommages sont des dommages matériels léger, qui
-                        seront pris en charge par votre assurance à contre
-                        partie d'une franchise.
-                        <br />
-                        <br />
-                        Rien de grave vous perdrez simplement un peu de temps,
-                        soyez patient.
-                      </p>
+                      <p>Les dommages sont des dommages matériels léger.</p>
                     </div>
                   </div>
                 )}
@@ -260,32 +253,33 @@ export default class Analyze extends React.PureComponent<{}, IState> {
                     </div>
                     <div className="card-body">
                       <p>
-                        Votre véhicule est bien endommagé au niveau de(s)
-                        vitre(s) de manière légère.
+                        Le véhicule est bien endommagé au niveau de(s) vitre(s)
+                        de manière légère.
                         <br />
                         <br />
-                        Estimation des coûts :{" "}
+                        Estimation des coûts en pièces détachées :{" "}
                         <b>{Math.floor(Math.random() * 1159) + 127} euros</b>
                       </p>
-                      <p>
-                        Nous vous conseillons de vous orienté vers un service
-                        tels que :
-                        <br />
-                        <br />
-                        <a href="https://www.carglass.fr/">
-                          https://www.carglass.fr/
-                        </a>
-                        <br />
-                        <br />
-                        Joignable au : 09 77 40 19 28
-                      </p>
+                  <h4>Liste de pièces nécéssaire pour la réparation :</h4>
+                      <ul className="list-group">
+                        <li className="list-group-item">1 - <img src={piece1} alt="" height="180" className="mb-2" />Pare choc avant</li>
+                        <li className="list-group-item">2 - <img src={piece2} alt="" height="180" className="mb-2" />Phare avant droit</li>
+                      </ul>
                     </div>
                   </div>
                 </div>
               )}
             </div>
+            <button
+              className="btn btn-primary btn-lg ml-3 mt-3 mb-4"
+              // eslint-disable-next-line no-restricted-globals
+              onClick={() => location.reload()}
+            >
+              Refaire un analyse
+              <FontAwesomeIcon icon={faCamera} className="mr-2 ml-2" />
+            </button>
             <Link to="/home">
-              <span className="btn btn-success btn-lg ml-3 mt-3 mb-4">
+              <span className="btn btn-primary btn-lg ml-3 mt-3 mb-4">
                 <FontAwesomeIcon icon={faImages} className="mr-2 ml-2" />
                 Retour à l'accueil
               </span>

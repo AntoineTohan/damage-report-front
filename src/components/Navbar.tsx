@@ -45,7 +45,7 @@ export default class Navbar extends React.PureComponent<IPropsNavbar, {}> {
         </div>
         <div className="form-inline">
           <span className="mr-3">
-            <strong>user@gmail.com</strong>
+            <strong>user.example@psa-sochaux.com</strong>
           </span>
           {this.renderViewSchedule()}
           <Link to="/">
