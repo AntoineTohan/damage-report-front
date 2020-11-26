@@ -57,7 +57,7 @@ export default function Profile() {
           <table className="table table-bordered">
             <tbody>
               <tr>
-                <th scope="row">Nombre de véhicules scanné aujourd'hui :</th>
+                <th scope="row">Nombre de véhicules scannés aujourd'hui :</th>
                 <td>240</td>
               </tr>
               <tr>
@@ -75,7 +75,7 @@ export default function Profile() {
             <h2 className="mb-0 mt-3">Profil</h2>
             <hr />
             <p className="mb-1 mt-1">
-              C'est ici que vous pourrai modifier à tout moment les informations
+              Modifier à tout moment les informations
               relative à votre compte Damage Report.
             </p>
             <form>

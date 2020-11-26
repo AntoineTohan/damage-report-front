@@ -3,7 +3,7 @@ import React from "react";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faPowerOff } from "@fortawesome/free-solid-svg-icons";
 import { faPortrait } from "@fortawesome/free-solid-svg-icons";
-import { faImages } from "@fortawesome/free-solid-svg-icons";
+import { faHome } from "@fortawesome/free-solid-svg-icons";
 import { Link } from "react-router-dom";
 import logo from "../ressources/damage-report-icon.png";
 import "../App.css";
@@ -20,15 +20,15 @@ export default class Navbar extends React.PureComponent<IPropsNavbar, {}> {
     if (this.props.view === "profile")
       return (
         <Link to="/home">
-          <FontAwesomeIcon icon={faImages} className="mr-2 ml-2"/>
-          Home
+          <FontAwesomeIcon icon={faHome} className="mr-2 ml-2"/>
+          Accueil
         </Link>
       );
     else
       return (
         <Link to="/profile">
           <FontAwesomeIcon icon={faPortrait} className="mr-2 ml-2" />
-          Profil
+          Profile
         </Link>
       );
   }
@@ -50,7 +50,7 @@ export default class Navbar extends React.PureComponent<IPropsNavbar, {}> {
           {this.renderViewSchedule()}
           <Link to="/">
             <FontAwesomeIcon icon={faPowerOff} className="mr-2 ml-2" />
-            Logout
+            Déconnexion
           </Link>
         </div>
       </nav>

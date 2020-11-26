@@ -22,7 +22,7 @@ export default class Home extends React.PureComponent {
               <br />
               <br />
               Damage Report permettra un suivi précis et un gain de productivité
-              pour les employés. De plus il vous peremttra d'éviter des erreurs
+              pour les employés. De plus, il vous permettra d'éviter des erreurs
               qualités dans la chaine de production / vente afin d'améliorer la
               satisfaction client.
             </p>
@@ -39,17 +39,17 @@ export default class Home extends React.PureComponent {
           <div className="bg-dark mr-md-3 text-center text-white overflow-hidden mt-4 mb-4">
             <div className="my-3 p-3">
               <h2 className="display-5">
-                Destiné à des grands groupes industriels
+                Une solution destinée à des grands groupes industriels
               </h2>
               <p className="lead ">
                 Damage Report propose une solution pour aider les entreprises à
-                suivre l'état de leurs véhicules sur un parc autmobile.
+                suivre l'état de leurs véhicules sur un parc automobile.
                 <br />
                 <br />
-                Avec un scan photo du véhicule vous pourrez vérifier l'intégrité
+                Avec un scan photo du véhicule vous pourrez : vérifier l'intégrité
                 de la carroserie du véhicule, avoir sa position au sein de votre
-                parc, avoir une estimation du prix de réparation et des pièces
-                nécéssaires.
+                parc, avoir une estimation du prix de réparation avec la listes des pièces
+                nécessaires.
               </p>
             </div>
             <img src={imageEntreprise} alt="" height="339" className="mb-2" />
