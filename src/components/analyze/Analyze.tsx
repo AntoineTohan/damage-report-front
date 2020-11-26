@@ -125,7 +125,11 @@ export default class Analyze extends React.PureComponent<{}, IState> {
                       </p>
                     )}
                     <h4 className="mt-4 mb-4">
-                      Accuracy : {this.state.response.data.car.accuracy * 100}
+                      Précision:{" "}
+                      {Math.round(
+                        this.state.response.data.car.accuracy * 100 * 10
+                      ) / 10}{" "}
+                      %
                     </h4>
                   </div>
                 </div>
@@ -139,9 +143,9 @@ export default class Analyze extends React.PureComponent<{}, IState> {
                     </div>
                     <div className="card-body">
                       {this.state.response.data.damage.class === "00-damage" ? (
-                        <h1 className="card-title pricing-card-title">
+                        <h2 className="card-title pricing-card-title">
                           Endommagé
-                        </h1>
+                        </h2>
                       ) : (
                         <h1 className="card-title pricing-card-title">Aucun</h1>
                       )}
@@ -177,8 +181,11 @@ export default class Analyze extends React.PureComponent<{}, IState> {
                       )}
 
                       <h4 className="mt-4 mb-4">
-                        Accuracy :{" "}
-                        {this.state.response.data.damage.accuracy * 100}
+                        Précision:{" "}
+                        {Math.round(
+                          this.state.response.data.damage.accuracy * 100 * 10
+                        ) / 10}{" "}
+                        %
                       </h4>
 
                       {this.state.response.data.damage.class !==
@@ -203,6 +210,27 @@ export default class Analyze extends React.PureComponent<{}, IState> {
                   <div className="card mb-4 box-shadow">
                     <div className="card-header">
                       <h4 className="my-0 font-weight-normal">
+                        Localisation des dommages
+                      </h4>
+                    </div>
+                    <div className="card-body">
+                      <ul className="list-group mb-4">
+                        <li className="list-group-item">- Vitre(s)</li>
+                        <li className="list-group-item">- Carroserie aile</li>
+                      </ul>
+                      <p>
+                        Les dommages sont détecté au niveau de(s) vitre(s) de
+                        votre véhicules.
+                      </p>
+                      <br />
+                    </div>
+                  </div>
+                )}
+
+                {this.state.response.data.damage.class === "00-damage" && (
+                  <div className="card mb-4 box-shadow">
+                    <div className="card-header">
+                      <h4 className="my-0 font-weight-normal">
                         Gravité des dommages
                       </h4>
                     </div>
@@ -217,27 +245,6 @@ export default class Analyze extends React.PureComponent<{}, IState> {
                         Rien de grave vous perdrez simplement un peu de temps,
                         soyez patient.
                       </p>
-                    </div>
-                  </div>
-                )}
-
-                {this.state.response.data.damage.class === "00-damage" && (
-                  <div className="card mb-4 box-shadow">
-                    <div className="card-header">
-                      <h4 className="my-0 font-weight-normal">
-                        Localisation des dommages
-                      </h4>
-                    </div>
-                    <div className="card-body">
-                      <ul className="list-group mb-4">
-                        <li className="list-group-item">- Vitre(s)</li>
-                        <li className="list-group-item">- Carroserie aile</li>
-                      </ul>
-                      <p>
-                        Les dommages sont détecté au niveau de(s) vitre(s) de
-                        votre véhicules.
-                      </p>
-                      <br />
                     </div>
                   </div>
                 )}
